@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="استعلم عن موعد اختبارك في مسابقة القرآن الكريم بقرية القصبه عن طريق الرقم القومي">
+  <title>مواعيد الاختبارات | مسابقة القرآن الكريم</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold-100: #fdf6e3;
+      --gold-200: #f5e6b8;
+      --gold-300: #ecd58a;
+      --gold-400: #d4a843;
+      --gold-500: #c8952e;
+      --gold-600: #a67b1e;
+      --gold-gradient: linear-gradient(135deg, #d4a843 0%, #f5e6b8 40%, #c8952e 70%, #a67b1e 100%);
+
+      --green-200: #a5d6a7;
+      --green-400: #2e7d32;
+      --green-500: #1b5e20;
+      --green-700: #0a2e0e;
+      --green-800: #061f09;
+
+      --bg-dark: #040d06;
+      --bg-card: rgba(8, 38, 12, 0.6);
+      --text-primary: #f0f7f1;
+      --text-secondary: #a5d6a7;
+      --text-muted: rgba(165, 214, 167, 0.55);
+      --border-gold: rgba(212, 168, 67, 0.25);
+      --border-subtle: rgba(212, 168, 67, 0.12);
+      --radius-md: 14px;
+      --radius-lg: 22px;
+      --radius-full: 9999px;
+      --transition-normal: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Cairo', 'Tajawal', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ---------- Background ---------- */
+    .bg-container { position: fixed; inset: 0; z-index: 0; }
+    .bg-container img {
+      width: 100%; height: 100%;
+      object-fit: cover; opacity: 0.15;
+      filter: blur(4px) saturate(0.6);
+    }
+    .bg-overlay {
+      position: fixed; inset: 0; z-index: 1;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(212,168,67,0.06) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 100%, rgba(4,13,6,0.95) 0%, transparent 65%),
+        linear-gradient(180deg, rgba(4,13,6,0.75) 0%, rgba(4,13,6,0.92) 100%);
+    }
+
+    /* ---------- Particles ---------- */
+    .particles { position: fixed; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
+    .particle {
+      position: absolute; width: 3px; height: 3px;
+      background: var(--gold-400); border-radius: 50%;
+      opacity: 0.4; animation: floatParticle 18s infinite ease-in-out;
+    }
+    .particle:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; animation-duration: 22s; }
+    .particle:nth-child(2) { top: 30%; left: 85%; animation-delay: 3s; animation-duration: 18s; }
+    .particle:nth-child(3) { top: 70%; left: 20%; animation-delay: 6s; animation-duration: 25s; }
+    .particle:nth-child(4) { top: 50%; left: 60%; animation-delay: 9s; animation-duration: 20s; }
+    .particle:nth-child(5) { top: 80%; left: 45%; animation-delay: 2s; animation-duration: 16s; }
+    .particle:nth-child(6) { top: 10%; left: 70%; animation-delay: 5s; animation-duration: 23s; }
+
+    @keyframes floatParticle {
+      0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+      10% { opacity: 0.5; }
+      50% { transform: translateY(-80px) translateX(30px); opacity: 0.3; }
+      90% { opacity: 0.5; }
+    }
+
+    /* ---------- Container ---------- */
+    .container {
+      position: relative; z-index: 10;
+      max-width: 620px; width: 92%;
+      padding: 40px 10px; text-align: center;
+    }
+
+    /* ---------- Ornament ---------- */
+    .ornament {
+      display: flex; align-items: center;
+      justify-content: center; gap: 12px; margin-bottom: 20px;
+    }
+    .ornament-line {
+      width: 60px; height: 1.5px;
+      background: var(--gold-gradient);
+      border-radius: 2px; opacity: 0.5;
+    }
+    .ornament-star { font-size: 1.5rem; }
+
+    /* ---------- Bismillah ---------- */
+    .bismillah {
+      font-family: 'Amiri', serif; font-size: 1.8rem;
+      color: var(--gold-400); margin-bottom: 10px;
+      text-shadow: 0 0 20px rgba(212,168,67,0.2);
+      animation: fadeUp 0.6s ease both;
+    }
+
+    /* ---------- Page Title ---------- */
+    .page-title {
+      font-size: 1.5rem; font-weight: 800;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; margin-bottom: 6px;
+      line-height: 1.7; animation: fadeUp 0.6s ease 0.1s both;
+    }
+    .page-subtitle {
+      font-size: 0.88rem; color: var(--text-muted);
+      margin-bottom: 28px; line-height: 1.7;
+      animation: fadeUp 0.6s ease 0.15s both;
+    }
+
+    /* ---------- Search Card ---------- */
+    .search-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(24px);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-lg);
+      padding: 35px 28px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.35), 0 0 30px rgba(212,168,67,0.08);
+      animation: fadeUp 0.6s ease 0.2s both;
+    }
+
+    .search-label {
+      font-size: 0.95rem; font-weight: 600;
+      color: var(--text-secondary); margin-bottom: 14px;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .search-label-icon { font-size: 1.2rem; }
+
+    /* ---------- Input Group ---------- */
+    .input-group {
+      display: flex; gap: 10px;
+      margin-bottom: 8px;
+    }
+    .search-input {
+      flex: 1; padding: 14px 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1.5px solid var(--border-gold);
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      font-family: 'Cairo', sans-serif;
+      font-size: 1.05rem; font-weight: 600;
+      letter-spacing: 2px; text-align: center;
+      direction: ltr;
+      transition: var(--transition-normal);
+      outline: none;
+    }
+    .search-input::placeholder {
+      color: var(--text-muted); font-size: 0.82rem;
+      letter-spacing: 0.5px;
+    }
+    .search-input:focus {
+      border-color: var(--gold-400);
+      background: rgba(255,255,255,0.09);
+      box-shadow: 0 0 0 3px rgba(212,168,67,0.1);
+    }
+    .search-input.error {
+      border-color: rgba(239, 83, 80, 0.6);
+      box-shadow: 0 0 0 3px rgba(239, 83, 80, 0.1);
+    }
+
+    .search-btn {
+      padding: 14px 28px;
+      background: linear-gradient(135deg, var(--gold-400), var(--gold-600));
+      border: none; border-radius: var(--radius-md);
+      color: #0a2e0e; font-family: 'Cairo', sans-serif;
+      font-size: 1rem; font-weight: 800;
+      cursor: pointer; white-space: nowrap;
+      transition: var(--transition-normal);
+      box-shadow: 0 4px 20px rgba(212,168,67,0.3);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .search-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 28px rgba(212,168,67,0.4);
+    }
+    .search-btn:active { transform: translateY(0); }
+    .search-btn:disabled {
+      opacity: 0.6; cursor: not-allowed; transform: none;
+    }
+    .search-btn-icon { font-size: 1.1rem; }
+
+    .input-hint {
+      font-size: 0.75rem; color: var(--text-muted);
+      text-align: center; margin-top: 6px;
+    }
+
+    .error-msg {
+      display: none; padding: 10px 16px;
+      background: rgba(239, 83, 80, 0.08);
+      border: 1px solid rgba(239, 83, 80, 0.25);
+      border-radius: var(--radius-md);
+      color: #ef9a9a; font-size: 0.88rem;
+      font-weight: 600; margin-top: 14px;
+      text-align: center; line-height: 1.7;
+    }
+    .error-msg.visible { display: block; animation: fadeUp 0.3s ease both; }
+
+    /* ---------- Loading ---------- */
+    .loading-spinner {
+      display: none; justify-content: center;
+      align-items: center; padding: 30px 0;
+    }
+    .loading-spinner.visible { display: flex; }
+    .spinner {
+      width: 40px; height: 40px;
+      border: 3px solid var(--border-gold);
+      border-top-color: var(--gold-400);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ---------- Result Card ---------- */
+    .result-card {
+      display: none; margin-top: 24px;
+      background: rgba(8, 38, 12, 0.5);
+      border: 1px solid rgba(46, 125, 50, 0.25);
+      border-radius: var(--radius-lg);
+      padding: 28px 22px;
+      text-align: right;
+    }
+    .result-card.visible {
+      display: block; animation: fadeUp 0.5s ease both;
+    }
+
+    .result-header {
+      display: flex; align-items: center;
+      justify-content: center; gap: 10px;
+      margin-bottom: 20px; padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .result-check {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(46, 125, 50, 0.12);
+      border: 2px solid rgba(46, 125, 50, 0.4);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+    }
+    .result-header-text {
+      font-size: 1.05rem; font-weight: 700;
+      color: var(--green-200);
+    }
+
+    .result-row {
+      display: flex; align-items: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(212,168,67,0.06);
+    }
+    .result-row:last-child { border-bottom: none; }
+
+    .result-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: rgba(212,168,67,0.08);
+      border: 1px solid rgba(212,168,67,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; margin-left: 12px; flex-shrink: 0;
+    }
+    .result-label {
+      font-size: 0.78rem; color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+    .result-value {
+      font-size: 1rem; font-weight: 700;
+      color: var(--text-primary); line-height: 1.6;
+    }
+    .result-value.gold {
+      background: var(--gold-gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .result-value.highlight {
+      color: #81c784; font-size: 1.05rem;
+    }
+
+    /* ---------- Sponsor ---------- */
+    .sponsor-strip {
+      margin-top: 28px; padding: 14px 20px;
+      background: rgba(8, 38, 12, 0.5);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      animation: fadeUp 0.6s ease 0.35s both;
+    }
+    .sponsor-strip-title {
+      font-size: 0.7rem; color: rgba(165, 214, 167, 0.4);
+      text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;
+    }
+    .sponsor-strip-name {
+      font-size: 0.95rem; font-weight: 700;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .sponsor-strip-sub {
+      font-size: 0.8rem; color: var(--green-200); margin-top: 3px;
+    }
+    .sponsor-strip-sub strong { color: #a5d6a7; }
+
+    /* ---------- WhatsApp ---------- */
+    .inquiry-section {
+      margin-top: 16px;
+      animation: fadeUp 0.6s ease 0.4s both;
+    }
+    .inquiry-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 18px;
+      background: rgba(37, 211, 102, 0.08);
+      border: 1px solid rgba(37, 211, 102, 0.25);
+      border-radius: var(--radius-full);
+      color: #a5d6a7; font-size: 0.82rem;
+      font-weight: 600; text-decoration: none;
+      transition: var(--transition-normal);
+    }
+    .inquiry-link:hover {
+      background: rgba(37, 211, 102, 0.15);
+      border-color: rgba(37, 211, 102, 0.4);
+      transform: translateY(-2px);
+    }
+    .inquiry-number {
+      color: #25d366; font-weight: 800;
+      direction: ltr; display: inline;
+    }
+
+    /* ---------- Footer ---------- */
+    .footer {
+      margin-top: 24px; font-size: 0.75rem;
+      color: rgba(165, 214, 167, 0.3);
+      animation: fadeUp 0.6s ease 0.5s both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 520px) {
+      .container { padding: 24px 8px; }
+      .search-card { padding: 24px 16px; }
+      .input-group { flex-direction: column; }
+      .search-btn { justify-content: center; padding: 14px; }
+      .page-title { font-size: 1.25rem; }
+      .bismillah { font-size: 1.5rem; }
+      .result-card { padding: 20px 14px; }
+      .comp-name { font-size: 1.5rem; }
+      .comp-village { font-size: 1rem; }
+    }
+
+    /* ---------- Competition Name ---------- */
+    .comp-name-section {
+      margin-bottom: 24px;
+      animation: fadeUp 0.6s ease 0.05s both;
+    }
+    .comp-name {
+      font-family: 'Amiri', serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.8;
+      margin-bottom: 4px;
+    }
+    .comp-village {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--green-200);
+      letter-spacing: 1px;
+    }
+    .comp-divider {
+      width: 100px; height: 2px;
+      background: var(--gold-gradient);
+      border-radius: 2px;
+      margin: 12px auto 0;
+      opacity: 0.35;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--green-800); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-600); border-radius: 3px; }
+    ::selection { background: rgba(212,168,67,0.25); color: var(--gold-100); }
+  </style>
+</head>
+<body>
+
+  <!-- Background -->
+  <div class="bg-container">
+    <img src="bg.png" alt="" loading="eager">
+  </div>
+  <div class="bg-overlay"></div>
+
+  <!-- Particles -->
+  <div class="particles">
+    <div class="particle"></div><div class="particle"></div>
+    <div class="particle"></div><div class="particle"></div>
+    <div class="particle"></div><div class="particle"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="container">
+
+    <div class="ornament">
+      <span class="ornament-line"></span>
+      <span class="ornament-star">📖</span>
+      <span class="ornament-line"></span>
+    </div>
+
+    <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+
+    <!-- Competition Name -->
+    <div class="comp-name-section">
+      <div class="comp-name">مسابقة تاج الوقار</div>
+      <div class="comp-village">بقرية القصبه</div>
+      <div class="comp-divider"></div>
+    </div>
+
+    <h1 class="page-title">الاستعلام عن موعد الاختبار</h1>
+    <p class="page-subtitle">أدخل الرقم القومي للاستعلام عن موعد ومكان الاختبار</p>
+
+    <!-- Search Card -->
+    <div class="search-card">
+
+      <div class="search-label">
+        <span class="search-label-icon">🆔</span>
+        <span>أدخل الرقم القومي المكون من 14 رقم</span>
+      </div>
+
+      <div class="input-group">
+        <input type="text" id="nationalIdInput" class="search-input"
+          placeholder="مثال: 30001011234567"
+          maxlength="14" inputmode="numeric" autocomplete="off">
+        <button type="button" id="searchBtn" class="search-btn" onclick="searchExam()">
+          <span class="search-btn-icon">🔍</span>
+          <span>استعلام</span>
+        </button>
+      </div>
+      <p class="input-hint">يجب إدخال 14 رقم بالأرقام الإنجليزية</p>
+
+      <!-- Error Message -->
+      <div class="error-msg" id="errorMsg"></div>
+
+      <!-- Loading -->
+      <div class="loading-spinner" id="loadingSpinner">
+        <div class="spinner"></div>
+      </div>
+
+      <!-- Result -->
+      <div class="result-card" id="resultCard">
+        <div class="result-header">
+          <div class="result-check">✅</div>
+          <span class="result-header-text">تم العثور على بياناتك</span>
+        </div>
+
+        <div class="result-row">
+          <div class="result-icon">👤</div>
+          <div>
+            <div class="result-label">اسم المتسابق</div>
+            <div class="result-value gold" id="resName">—</div>
+          </div>
+        </div>
+
+        <div class="result-row">
+          <div class="result-icon">🏆</div>
+          <div>
+            <div class="result-label">المستوى المتقدم له</div>
+            <div class="result-value" id="resLevel">—</div>
+          </div>
+        </div>
+
+        <div class="result-row">
+          <div class="result-icon">📅</div>
+          <div>
+            <div class="result-label">موعد الاختبار</div>
+            <div class="result-value highlight" id="resDate">—</div>
+          </div>
+        </div>
+
+        <div class="result-row">
+          <div class="result-icon">📍</div>
+          <div>
+            <div class="result-label">مكان الاختبار</div>
+            <div class="result-value highlight" id="resLocation">—</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Sponsor -->
+    <div class="sponsor-strip">
+      <div class="sponsor-strip-title">الراعي الرسمي</div>
+      <div class="sponsor-strip-name">🕌 شركة دار الفائزين للسياحة</div>
+      <div class="sponsor-strip-sub">
+        تحت إشراف جروب <strong>بصمة خير</strong> قرية القصبه
+      </div>
+    </div>
+
+    <!-- WhatsApp -->
+    <div class="inquiry-section">
+      <a href="https://wa.me/2001279499127" target="_blank" class="inquiry-link">
+        <span>💬</span>
+        <span>للاستفسار واتساب:</span>
+        <span class="inquiry-number">01279499127 - 01146970542 - 01118477394</span>
+      </a>
+    </div>
+
+    <p class="footer">جعله الله في ميزان حسناتكم 🤲</p>
+  </div>
+
+  <script>
+    // ⚠️ ضع هنا رابط Google Apps Script الخاص بالاستعلام
+    const LOOKUP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwVJo7jnMdHKbzX83ud5kYUpXhIWsZvrHA0aSBUgHeFvJ4sX78ZpqpYCc1D8mbB_SNwBw/exec';
+
+    const input = document.getElementById('nationalIdInput');
+    const errorMsg = document.getElementById('errorMsg');
+    const loadingSpinner = document.getElementById('loadingSpinner');
+    const resultCard = document.getElementById('resultCard');
+    const searchBtn = document.getElementById('searchBtn');
+
+    // Allow only numbers
+    input.addEventListener('input', () => {
+      input.value = input.value.replace(/[^0-9]/g, '');
+      input.classList.remove('error');
+      errorMsg.classList.remove('visible');
+    });
+
+    // Enter key
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') searchExam();
+    });
+
+    function showError(msg) {
+      errorMsg.textContent = '⚠ ' + msg;
+      errorMsg.classList.add('visible');
+      input.classList.add('error');
+    }
+
+    function hideAll() {
+      errorMsg.classList.remove('visible');
+      resultCard.classList.remove('visible');
+      loadingSpinner.classList.remove('visible');
+      input.classList.remove('error');
+    }
+
+    async function searchExam() {
+      hideAll();
+
+      const nationalId = input.value.trim();
+
+      // Validate: exactly 14 digits
+      if (!/^\d{14}$/.test(nationalId)) {
+        showError('يرجى إدخال الرقم القومي بشكل صحيح (14 رقم بالأرقام الإنجليزية)');
+        return;
+      }
+
+      // Show loading
+      loadingSpinner.classList.add('visible');
+      searchBtn.disabled = true;
+
+      try {
+        const response = await fetch(`${LOOKUP_SCRIPT_URL}?id=${nationalId}`);
+        const data = await response.json();
+
+        loadingSpinner.classList.remove('visible');
+        searchBtn.disabled = false;
+
+        if (data.status === 'found') {
+          document.getElementById('resName').textContent = data.fullName;
+          document.getElementById('resLevel').textContent = data.level;
+          document.getElementById('resDate').textContent = data.examDate;
+          document.getElementById('resLocation').textContent = data.examLocation;
+          resultCard.classList.add('visible');
+        } else {
+          showError('لم يتم العثور على بيانات بهذا الرقم القومي. تأكد من صحة الرقم أو تواصل معنا عبر واتساب.');
+        }
+
+      } catch (err) {
+        loadingSpinner.classList.remove('visible');
+        searchBtn.disabled = false;
+        showError('حدث خطأ أثناء الاتصال بالسيرفر. يرجى المحاولة مرة أخرى لاحقاً.');
+      }
+    }
+  </script>
+
+</body>
+</html>
